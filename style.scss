@@ -1,0 +1,53 @@
+// импорт другого файла SCSS(фаил обнуления стилей)
+@import "nullstyle.scss";
+
+// Создание переменных
+$fz:80px;
+$color_1:#000;
+$color_2:#fff;
+
+// Шаблон
+%tplborder {
+    border-bottom: 5px dashed red;
+}
+
+// Mixin
+@mixin fontz($f, $c) {
+    font-size: $f;
+    color: $c;
+}
+
+.block {
+    width: 300px / 960px * 100%;
+    background: #555;
+    padding: 30px;
+    line-height: 60px;  
+    .block_text {
+        font-size: $fz;
+        span {
+            color: $color_1;
+        }
+    }
+}
+
+.link {
+    color: $color_1;
+    text-decoration: underline;
+    font-size: $fz;
+    //& соотвует .link
+    .block & {
+        font-size: $fz;
+    }
+    &:hover {
+        color: $color_2;
+    }
+    // применение шаблона
+    @extend %tplborder;
+}
+
+.link_2 {
+    // применение MIXIN
+    @include fontz(50px, green);
+
+    @extend %tplborder;
+}
